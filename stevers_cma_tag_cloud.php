@@ -300,5 +300,39 @@ function stevers_shortcode_for_tag_cloud()
  
     return $return;
 }
+
+
+
+function wpb_hook_javascript_footer() {
+    ?>
+        <script>
+          const questionInput=document.querySelector("input[name='thread_title']");
+		  const descriptionInput=document.querySelector("textarea[name='thread_content']");
+		  function addWordCount(elem, id){
+		  	function inputHandler(e){
+				if(document.getElementById(id))document.getElementById(id).remove();
+				const questionExplainer =document.createElement("div");
+		  		questionExplainer.innerText=e.target.value.length;
+				questionExplainer.id=id;
+		  	  	elem.insertAdjacentElement('afterend',questionExplainer);
+		  		console.log(document.getElementById(id));
+		  }  
+			  
+			  
+		  elem.addEventListener("input", inputHandler);
+
+};
+		  console.log(questionInput)
+		  addWordCount(questionInput, "questionInputId");
+		  addWordCount(descriptionInput, "descriptionInputId");
+			
+			
+			
+        </script>
+    <?php
+}
+add_action('wp_footer', 'wpb_hook_javascript_footer');
+
+
 add_shortcode('stevers_cma_tag_cloud','stevers_shortcode_for_tag_cloud');
 ?>
