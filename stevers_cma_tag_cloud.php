@@ -3,20 +3,13 @@
 *Plugin Name: Christopher Stever's Plugin for cma tag cloud example.
 *Description: A plugin for a tag shortcode that points too the cma tags.
 */
-?>
-
-<?php
-/**
-*Plugin Name: Christopher Stever's Plugin for cma tag cloud example.
-*Description: A plugin for a tag shortcode that points too the cma tags.
-*/
 
 
 
 function wp_generate_custom_tag_cloud( $tags, $args = '' ) {
     $defaults = array(
-        'smallest'                   => 8,
-        'largest'                    => 22,
+        'smallest'                   => 12,
+        'largest'                    => 30,
         'unit'                       => 'pt',
         'number'                     => 0,
         'format'                     => 'flat',
@@ -301,37 +294,165 @@ function stevers_shortcode_for_tag_cloud()
     return $return;
 }
 
-
-
 function wpb_hook_javascript_footer() {
     ?>
         <script>
-          const questionInput=document.querySelector("input[name='thread_title']");
-		  const descriptionInput=document.querySelector("textarea[name='thread_content']");
-		  function addWordCount(elem, id){
-		  	function inputHandler(e){
-				if(document.getElementById(id))document.getElementById(id).remove();
-				const questionExplainer =document.createElement("div");
-		  		questionExplainer.innerText=e.target.value.length;
-				questionExplainer.id=id;
-		  	  	elem.insertAdjacentElement('afterend',questionExplainer);
-		  		console.log(document.getElementById(id));
-		  }  
-			  
-			  
-		  elem.addEventListener("input", inputHandler);
+			
+	
+			
+			
+			
+			
+			
+			const questionInput = document.querySelector("input[name='thread_title']");
+const descriptionInput = document.querySelector("textarea[name='thread_content']");
+
+function addWordCount(elem, id) {
+
+    function inputHandler(e) {
+
+        if (elem) {
+            if (document.getElementById(id)) document.getElementById(id).remove();
+            const questionExplainer = document.createElement("div");
+			const regex=/[^.]\S+/g;
+			
+			const newText=(elem.textContent) ? elem.textContent : e.target.value;
+			
+			const wordArr=newText.match(regex)
+            questionExplainer.innerText = wordArr.length+" words"
+            questionExplainer.id = id;
+            
+			  if (elem.nodeName === 'INPUT' || elem.nodeName === 'TEXTAREA')elem.insertAdjacentElement('afterend', questionExplainer);
+			  else{
+				  if(document.querySelector('.cma-question-date'))
+				  {document.querySelector('.cma-question-date').insertAdjacentElement('afterend', questionExplainer);}
+			  }
+        }
+    }
+
+    if (elem) {
+        
+        if (elem.nodeName === 'INPUT' || elem.nodeName === 'TEXTAREA') {
+            elem.addEventListener("input", inputHandler);
+           
+        }
+        else {
+            inputHandler(elem);
+        }
+    }
+
+            
 
 };
-		  console.log(questionInput)
-		  addWordCount(questionInput, "questionInputId");
-		  addWordCount(descriptionInput, "descriptionInputId");
+
+const onloadText=document.querySelector("div.cma-question-body-content") ? document.querySelector("div.cma-question-body-content").firstElementChild : null;
+addWordCount(onloadText, "questionTextId");
+addWordCount(questionInput, "questionInputId");
+addWordCount(descriptionInput, "descriptionInputId");
 			
 			
 			
+			
+					//THIRD PARTY from https://gist.github.com/icodejs/3183154
+var open = window.XMLHttpRequest.prototype.open,
+    send = window.XMLHttpRequest.prototype.send,
+    onReadyStateChange;
+
+function openReplacement(method, url, async, user, password) {
+    var syncMode = async !== false ? 'async' : 'sync';
+    
+	
+	
+    return open.apply(this, arguments);
+}
+
+function sendReplacement(data) {
+    
+    if(this.onreadystatechange) {
+        this._onreadystatechange = this.onreadystatechange;
+    }
+    this.onreadystatechange = onReadyStateChangeReplacement;
+
+    return send.apply(this, arguments);
+}
+
+function onReadyStateChangeReplacement() {
+		const questionText = document.querySelector("div.cma-question-body-content") ? document.querySelector("div.cma-question-body-content").firstElementChild : null;
+addWordCount(questionText, "questionTextId");
+	
+   const newElem=document.createElement("a");
+   newElem.className="google-me";
+			const multiSpaceRegex= /\s+/g;
+	
+	if(document.querySelector('.cma-thread-title-h1')){
+		console.log("yeet");
+	const newString=document.querySelector('.cma-thread-title-h1').innerText.replace(multiSpaceRegex,"+");
+   newElem.href=`https://www.google.com/search?q=${newString}`;
+	newElem.innerText="Google Answer";
+   if(document.querySelector("table")&& !document.querySelector(".google-me")){document.querySelector("table").insertAdjacentElement('afterend', newElem);} 
+	console.log(newElem);
+	
+	}
+    if(this._onreadystatechange) {
+        return this._onreadystatechange.apply(this, arguments);
+    }
+}
+
+window.XMLHttpRequest.prototype.open = openReplacement;
+window.XMLHttpRequest.prototype.send = sendReplacement;
+			
+			
+			
+			
+const processText=(elem)=>{
+	const eleminator=elem;
+	const spaceRegex=/\s/g
+	const characterString=elem.firstElementChild.innerText.replace(spaceRegex,"");
+elem.innerHTML=`<div class="cma-thread-summary-right"><div class="cma-thread-posted">${characterString.length} characters</div></div>`;
+	
+}			
+			
+listOfContent=document.querySelectorAll(".cma-thread-content");
+			
+
+			
+listOfContent.forEach(elem=>processText(elem));
+function  clickOnLink(e){
+const headingText=e.target.innerText;
+	 document.getElementById('questions-field-heading').remove();
+	
+   const newElem=document.createElement("a");
+   newElem.class="google";
+   newElem.href="https://www.google.com/search?q=trump+putin"
+	newElem.innerText="oogle me";
+   if(document.querySelector("table")){document.querySelector("table").insertAdjacentElement(newElem);
+	console.log(newElem);}
+
+}
+			function setUp(e){
+			e.addEventListener("click", clickOnLink)}
+const nameHeadings=document.querySelectorAll(".cma-thread-title > a");
+	
+			nameHeadings.forEach(e=>setUp(e));
+
+const questionTitle=document.querySelector(
+".cma_thread>.main_title"
+);
+		if(questionTitle){
+ const newElem=document.createElement("a");
+			const regex= /\s+/g
+			const newString=questionTitle.innerText.replace(regex, "+");
+   newElem.href=`https://www.google.com/search?q=${newString}`;
+   newElem.className="google-me";
+	newElem.innerText="Google Answer";
+   document.querySelector("table").insertAdjacentElement('afterend', newElem);
+	console.log(newElem);
+}
         </script>
     <?php
 }
 add_action('wp_footer', 'wpb_hook_javascript_footer');
+
 
 
 add_shortcode('stevers_cma_tag_cloud','stevers_shortcode_for_tag_cloud');
