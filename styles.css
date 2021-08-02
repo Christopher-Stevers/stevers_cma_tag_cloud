@@ -21,12 +21,6 @@ a {
     color: rgb(64, 112, 112);
 }
 
-input,
-textarea {
-    padding: 0px;
-    border: 1px solid rgb(187, 187, 187);
-    margin: 0px;
-}
 
 #page-container {
     padding: 0px !important;
@@ -67,19 +61,18 @@ textarea {
     top: 70vh;
 }
 
-#top-header {
-    background-color: #a1cdd1;
-    position: sticky !important;
+#page-container>#top-header {
+    position: sticky ;
 }
 
 #et-secondary-nav {
-    display: block !important;
+    display: block ;
     padding-left: 2rem;
 }
 
 #et-secondary-menu {
     float: left;
-    display: flex !important;
+    display: flex ;
     flex-direction: row-reverse;
     width: 100%;
     justify-content: space-between;
@@ -89,8 +82,8 @@ textarea {
 
 @media screen and (max-width: 760px) {
     #et-secondary-menu {
-        flex-direction: column !important;
-        height: auto!important
+        flex-direction: column ;
+        height: auto;
     }
 }
 
@@ -109,7 +102,7 @@ p.count-num {
     height: 5rem;
     padding: 0px;
     margin: 5vh auto;
-    background-color: black;
+              background-color: black;
     border-radius: 50%;
 }
 
@@ -180,13 +173,13 @@ button.et_pb_contact_submit,
     margin-top: 10vh;
 }
 
-.icon,
-.menu-item {
-    color: #505160 !important
+a.icon,
+li.menu-item {
+    color: #505160;
 }
 
 .bottom-nav>li.menu-item {
-    padding-left: 1rem !important;
+    padding-left: 1rem ;
 }
 
 li.et-social-google-plus {
@@ -212,19 +205,20 @@ li.et-social-google-plus {
 #menu-bottom-1>li {
     padding: 10px;
 }
-
+#footer-bottom ul>.et-social-icon>a{color: rgb(50,72,81);}
 li.et-social-icon {
+
     margin-left: 0px;
     margin-right: 10px;
 }
 
 .et-social-icon>a {
-    font-size: .75rem !important;
+    font-size: .75rem;
 }
 
 .et-social-icons {
     float: left;
-    padding-left: 0px !important;
+    padding-left: 0px ;
     padding-top: 0px;
 }
 
@@ -251,8 +245,8 @@ li.et-social-icon {
 }
 
 #top-header>.container {
-    padding-left: 0px !important;
-    padding-right: 0px!important;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 #et-footer-nav>.container {
@@ -277,19 +271,21 @@ li.et-social-icon {
     margin: 0px;
 }
 
-ul.cma-thread-orderby {
-    display: none !important;
+.cma-questions-container>ul.cma-thread-orderby {
+    display: none;
 }
 
 #questionInputId,
 #descriptionInputId {
     text-align: right;
+	float: right;
+	width: max-content;
     padding-right: 2rem;
     font-size: .75rem;
     color: rgb(50, 72, 81);
     position: relative;
-    line-height: 1.5rem;
-    top: calc(-3px - 1.5rem);
+    line-height: 1rem;
+    top: calc(-.25rem - 1rem);
 }
 
 .cma-thread-snippet {
@@ -329,7 +325,7 @@ cma-thread-numbers-count>div {
 .cma-thread-tags {
     position: relative;
     top: -1em;
-    padding: -1em 0em 0em 0em!important;
+    padding: -1em 0em 0em 0em;
     order: -1;
     width: 10%;
 }
@@ -376,7 +372,7 @@ input[type="button"],
 font-size: 13px;
 padding: 6px 24px;
 	margin-top: 30px;
-    background-color: rgb(50, 72, 81) !important;
+    background-color: rgb(50, 72, 81) ;
     color: rgb(124, 217, 217) !important;
     background-image: none !important;
     max-width: 400px;
@@ -396,7 +392,8 @@ input[type="button"]:hover {
 
 h2,
 h3, .cma-thread-title-h1 {
-    font-size: 2rem !important;
+    font-size: 2rem ;
+	font-weight: 500 ;
 }
 
 h2.entry-title {
@@ -421,14 +418,15 @@ h2.entry-title {
     grid-area: 2/4/3/5
 }
 
-.cma-thread-summary-right,
-.cma-thread-summary-right>* {
-    text-align: left !important;
+.cma-thread-snippet>.cma-thread-summary-right,
+
+.cma-thread-snippet>.cma-thread-summary-right>* {
+    text-align: left ;
     width: 100%;
 }
 
-.cma-thread-summary-right {
-    padding-bottom: 0 !important;
+.cma-thread-snippet>.cma-thread-summary-right {
+    padding-bottom: 0 
 }
 
 .wp-block-search.aligncenter .wp-block-search__inside-wrapper {
@@ -437,4 +435,5 @@ h2.entry-title {
 .google-me{
 padding: 6px 24px;
 }
-.cma_answer_form_bottom_link{display: none !important;}
+a.cma_answer_form_bottom_link{display: none;}
+textarea, textarea:focus, input, input:focus{color: #333333;}
