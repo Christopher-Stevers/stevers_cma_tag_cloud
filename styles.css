@@ -19,6 +19,12 @@ a {
 #page-container {
  padding:0px!important
 }
+#et-top-navigation{ display: none;}
+.logo-container{
+position: fixed;
+height: 100px;
+	z-index: 10;
+width: 100px;top: 0px;}
 #et-main-area {
  min-height:90vh;
  display:flex;
@@ -59,10 +65,12 @@ a {
  display:flex !important;
  flex-direction:row-reverse;
  width:100%;
+	align-content: center;
  justify-content:space-between;
  min-height:10vh;
  line-height:10vh
 }
+#et-info, #et-secondary-menu > ul > li a{padding-bottom: 0px;}
 @media screen and (max-width:760px) {
 	
 
@@ -398,3 +406,32 @@ div>a.google-me{text-decoration: underline;
 .heading-level-link{text-decoration: underline;}
 .cma-thread-posted{text-align: left;
 margin-top: -.3rem;}
+.wp-dark-mode-active #top-header, .wp-dark-mode-active #top-header a, .wp-dark-mode-active #et-footer-nav a, .wp-dark-mode-active #menu-bottom, .wp-dark-mode-active #main-footer #footer-bottom, .wp-dark-mode-active .icon{background-color: rgb(58, 92, 93) ;
+	color: rgb(190, 183, 172)!important;}
+ .light{display: block;}
+.dark{display: none;}
+.wp-dark-mode-inactive .light{display: block;}
+.wp-dark-mode-active .dark{
+display: block;}
+.wp-dark-mode-active .light{display: none;}
+.dark, .light{
+position: relative;
+align-self: center;
+top: 10px;}
+@media (prefers-color-scheme: dark){
+	
+ .light{display: none;}
+.dark{display: block;}
+	#top-header,  #top-header a,  #et-footer-nav a,  #menu-bottom,  #main-footer #footer-bottom,  .icon{background-color: rgb(58, 92, 93) ;
+	color: rgb(190, 183, 172)!important;}
+	.wp-dark-mode-inactive #top-header,  .wp-dark-mode-inactive #top-header a,  .wp-dark-mode-inactive #et-footer-nav a,  .wp-dark-mode-inactive #menu-bottom,  .wp-dark-mode-inactive #main-footer #footer-bottom,  .wp-dark-mode-inactive .icon{background-color: rgb(161, 205, 209);
+	color: rgb(50, 72, 81)!important;}
+	.light{display: none;}
+	.wp-dark-mode-active .light{display: none}
+	.wp-dark-mode-inactive .light{display: block;
+	}
+	.wp-dark-mode-inactive .dark{display: none;}
+	#id{display: none;}
+}
+
+header#main-header{display: none;}
